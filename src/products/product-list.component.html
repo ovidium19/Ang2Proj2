@@ -1,0 +1,62 @@
+<div class="card border-0">
+  <div class="card-header border-0">
+    <h3>{{pageTitle}}: </h3>
+  </div>
+  <div class="card-body border-0">
+    <div class="card border-0" *ngIf="products && products.length>0">
+      <div class="card-header border-0">
+        <div class="row">
+          <div class="col">
+            <form>
+              <div class="form-group row">
+                <div class="col">
+                  <label for="filterTerm">Filter by: </label>
+                </div>
+                <div class="col">
+                  <input type="text" id="filterTerm" name="filterTerm" [(ngModel)] = 'listFilter'>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-3"></div>
+          <div class="col">
+            <span>Filtered By: </span>
+            <span>{{listFilter}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body border-0">
+        <button class="btn btn-info my-4 d-block" (click)="showImages()" >{{showImg ? 'Hide': 'Show'}} Images</button>
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col" *ngIf="showImg">Image</th>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Code</th>
+            <th scope="col">Release Date</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stars</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let product of filteredProducts">
+            <td *ngIf="showImg">
+              <img [src]="product.imageUrl" alt="product.productName" width="50" height="50">
+            </td>
+            <td>
+              {{product.productId}}
+            </td>
+            <td>{{product.productName}}</td>
+            <td>{{product.productCode | convertToSpaces:'-'}}</td>
+            <td>{{product.releaseDate}}</td>
+            <td>{{product.price | currency:'USD':'symbol':'1.2-2'}}</td>
+            <td><pm-star [rating] = 'product.starRating' (ratingClicked) = 'OnRatingClicked($event)'></pm-star></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="alert" *ngIf="!products || products.length==0">No products available</div>
+  </div>
+</div>
