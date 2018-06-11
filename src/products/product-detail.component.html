@@ -1,0 +1,23 @@
+<div class="card" *ngIf="product">
+  <div class="card-header">{{product.productName}}</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-6">
+        <ul class="list-group border-0">
+          <li class="list-item border-0">Name: {{product.productName}}</li>
+          <li class="list-item border-0">Code: {{product.productCode}}</li>
+          <li class="list-item border-0">Price: {{product.price | currency:'USD':'symbol':'1.2-2'}}</li>
+          <li class="list-item border-0">
+            <span>Rating: </span>
+            <pm-star [rating]="product.productRating"></pm-star>
+          </li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="mx-0">
+          <img [src]="product.imageUrl" [alt]="product.productName">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
