@@ -15,4 +15,9 @@ export class ProductService {
       tap(val => console.log(`received this: ${val}`))
     );
   }
+  getProductById(id: number): Observable<IProduct> {
+    return this._http.get<IProduct>(this.backendUrl + `/${id}`).pipe(
+      tap(val => console.log(`received this: ${val}`))
+    );
+  }
 }

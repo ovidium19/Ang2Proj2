@@ -1,10 +1,24 @@
 <div class="">
   {{title}}
   <div class="my-4">
-    <pm-welcome></pm-welcome>
+    <div class="card">
+      <div class="card-header">
+        <h1>Welcome to this application!</h1>
+      </div>
+      <div class="card-body text-center">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/welcome']">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/products']">Product List</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="my-4">
-    <pm-products></pm-products>
+  <div class="container">
+    <router-outlet></router-outlet>
   </div>
 </div>
 
